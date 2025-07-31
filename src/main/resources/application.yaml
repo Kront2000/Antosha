@@ -3,7 +3,7 @@ spring:
     init:
       mode: always
   datasource:
-    url: jdbc:postgresql://postgres:HGmXqTGYGvVTDFBWNnjNWZGEHcjgqGZj@mainline.proxy.rlwy.net:30992/railway
+    url: jdbc:postgresql://mainline.proxy.rlwy.net:30992/railway
     username: postgres
     password: HGmXqTGYGvVTDFBWNnjNWZGEHcjgqGZj
     driver-class-name: org.postgresql.Driver
