@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/Gyrmaniya
+    url: jdbc:postgresql://postgres:HGmXqTGYGvVTDFBWNnjNWZGEHcjgqGZj@mainline.proxy.rlwy.net:30992/railway
     username: postgres
-    password: Banka!1235
+    password: HGmXqTGYGvVTDFBWNnjNWZGEHcjgqGZj
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
