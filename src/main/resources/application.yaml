@@ -8,12 +8,10 @@ spring:
     password: HGmXqTGYGvVTDFBWNnjNWZGEHcjgqGZj
     driver-class-name: org.postgresql.Driver
   jpa:
-    hibernate:
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-
-
