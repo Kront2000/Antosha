@@ -1,6 +1,7 @@
 spring:
   sql:
     init:
+      encoding: utf-8
       mode: always
   datasource:
     url: jdbc:postgresql://mainline.proxy.rlwy.net:30992/railway
