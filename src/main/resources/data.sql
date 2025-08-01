@@ -17,8 +17,11 @@ CREATE TABLE dishes (
 INSERT INTO categories (name)
 VALUES
   ('Сеты'),
-  ('Шаурма'),
-  ('Пицца');
+  ('Жаренные'),
+  ('Запечёные'),
+  ('Холодные'),
+  ('Пицца'),
+  ('Шаурма');
 INSERT INTO dishes (category_id, description, image_path, name, price) VALUES
 (1, 'Большой сет для компании из 3 видов роллов и суши', '/img/img1.png', 'Сет Комбо', 5990),
 (1, 'Классический сет с Филадельфией, Калифорнией и унаги', '/img/img2.png', 'Сет Классика', 4990),
