@@ -26,4 +26,15 @@ public class AddImageService {
         // Путь, по которому файл будет доступен в браузере
         return "/img/" + fileName;
     }
+
+    public String addImageToSer(Long id, MultipartFile multipartFile) throws IOException {
+        String uploadDir = System.getProperty("user.dir") + "/uploads/";
+        new File(uploadDir).mkdirs(); // создаёт папку, если нет
+
+        String fileName = "id-" + id + "-" + multipartFile.getOriginalFilename();
+        File file = new File(uploadDir + fileName);
+        multipartFile.transferTo(file);
+
+        return "/uploads/" + fileName;
+    }
 }

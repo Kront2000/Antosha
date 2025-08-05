@@ -62,7 +62,7 @@ public class DishService {
                 .id(dish.getId())
                 .description(dishDto.description())
                 .category(category)
-                .image_path(dishDto.image() == null ? dish.getImage_path() : addImageService.addImage(dish.getId(), dishDto.image()))
+                .image_path(dishDto.image() == null ? dish.getImage_path() : addImageService.addImageToSer(dish.getId(), dishDto.image()))
                 .build();
         return dishRepository.save(newDish);
     }
