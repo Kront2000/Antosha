@@ -31,14 +31,16 @@ public class DishService {
                 .price(dish.getPrice()).build()
         ).toList();
     }
-    public Dish save(DishDto dishDto){
-        return dishRepository.save(Dish.builder()
-                        .name(dishDto.name())
-                        .category(new Category(categoryRepository.findByName(dishDto.category_name()).orElse(new Category(100L, "Типо суши")).getId(),dishDto.category_name()))
-                        .description(dishDto.description())
-                        .image_path(dishDto.image_path())
-                        .price(dishDto.price())
-                .build());
+    public Dish save(DishDto dishDto) throws IOException {
+        Category category = categoryRepository.findByName(dishDto.category_name()).orElse(new Category());
+        Dish newDish = Dish.builder()
+                .name(dishDto.name())
+                .price(dishDto.price())
+                .description(dishDto.description())
+                .category(category)
+                .image_path(addImageService.addImageToSer(dishDto.id(), dishDto.image()))
+                .build();
+        return dishRepository.save(newDish);
     }
     public DishDto findById(Long id){
         Dish dish = dishRepository.findById(id).orElse(new Dish(0L, new Category(0L, "none"), "none", "none", "none",0L));
@@ -57,9 +59,9 @@ public class DishService {
         Dish dish = dishRepository.findById(dishDto.id()).orElse(new Dish());
         Category category = categoryRepository.findByName(dishDto.category_name()).orElse(new Category());
         Dish newDish = Dish.builder()
-                .name(dish.getName())
-                .price(dish.getPrice())
-                .id(dish.getId())
+                .name(dishDto.name())
+                .price(dishDto.price())
+                .id(dishDto.id())
                 .description(dishDto.description())
                 .category(category)
                 .image_path(dishDto.image() == null ? dish.getImage_path() : addImageService.addImageToSer(dish.getId(), dishDto.image()))

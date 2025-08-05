@@ -27,8 +27,20 @@ public class DishController {
     }
 
     @PostMapping("/add_dish")
-    public Dish save(@RequestBody DishDto dishDto){
-        return dishService.save(dishDto);
+    public void save(@RequestParam("name") String name,
+                     @RequestParam("description") String description,
+                     @RequestParam("category") String category,
+                     @RequestParam("price") Long price, @RequestPart(value = "image", required = false) MultipartFile image) throws IOException {
+        DishDto dishDto = DishDto.builder()
+                .name(name)
+                .image(image)
+                .price(price)
+                .description(description)
+                .category_name(category)
+                .build();
+        System.out.println(dishDto);
+        System.out.println(dishService.save(dishDto));
+
     }
 
     @GetMapping("/getById")

@@ -83,17 +83,19 @@
                                 </div>
                                 <div class="button_and_price">
                                     <div class='price'>${dish.price}тг</div>
-                                    <form action="edit.html?id=${dish.id}">
-                                        <input type="submit" value="edit">
-                                    </form>
-                                    
                                     <a href="edit.html?id=${dish.id}">
                                     <button>edit</button>
                                     </a>
                                 </div>
                             </div>
                         `).join('')}
+                        
+                            <div class="dish"><a class="plus" href='add.html?category=${category.name}'>
+                                <img class='dishimg' src='/img/add.png' alt=''>
+                                </a></dish>
+                        
                     </div>
+
                 `;
                     container.appendChild(categoryBlock);
                 });
