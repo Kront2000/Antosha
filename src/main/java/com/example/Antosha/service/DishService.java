@@ -8,20 +8,28 @@ import com.example.Antosha.repository.DishRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @AllArgsConstructor
 @Service
 public class DishService {
     private final DishRepository dishRepository;
     private final CategoryRepository categoryRepository;
+    private final AddImageService addImageService;
 
     public List<DishDto> findAll(){
-        return dishRepository.findAll().stream().map(dish -> new DishDto(
-                dish.getId(), dish.getName(), dish.getCategory().getId(),
-                dish.getCategory().getName(), dish.getDescription(),
-                dish.getImage_path(), dish.getPrice()
-        )).toList();
+        return dishRepository.findAll().stream().map(dish -> DishDto.builder()
+                .id(dish.getId())
+                .name(dish.getName())
+                .category_id(dish.getCategory().getId())
+                .category_name(dish.getCategory().getName())
+                .description(dish.getDescription())
+                .image_path(dish.getImage_path())
+                .price(dish.getPrice()).build()
+        ).toList();
     }
     public Dish save(DishDto dishDto){
         return dishRepository.save(Dish.builder()
@@ -31,5 +39,31 @@ public class DishService {
                         .image_path(dishDto.image_path())
                         .price(dishDto.price())
                 .build());
+    }
+    public DishDto findById(Long id){
+        Dish dish = dishRepository.findById(id).orElse(new Dish(0L, new Category(0L, "none"), "none", "none", "none",0L));
+        return DishDto.builder()
+                .id(dish.getId())
+                .name(dish.getName())
+                .category_id(dish.getCategory().getId())
+                .category_name(dish.getCategory().getName())
+                .description(dish.getDescription())
+                .image_path(dish.getImage_path())
+                .price(dish.getPrice()).build();
+
+    }
+
+    public Dish updateDish(DishDto dishDto) throws IOException {
+        Dish dish = dishRepository.findById(dishDto.id()).orElse(new Dish());
+        Category category = categoryRepository.findByName(dishDto.category_name()).orElse(new Category());
+        Dish newDish = Dish.builder()
+                .name(dish.getName())
+                .price(dish.getPrice())
+                .id(dish.getId())
+                .description(dishDto.description())
+                .category(category)
+                .image_path(dishDto.image() == null ? dish.getImage_path() : addImageService.addImage(dish.getId(), dishDto.image()))
+                .build();
+        return dishRepository.save(newDish);
     }
 }

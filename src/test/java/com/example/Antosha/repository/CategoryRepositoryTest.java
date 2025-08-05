@@ -21,6 +21,9 @@ public class CategoryRepositoryTest {
     private CategoryRepository categoryRepository;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private DishService dishService;
+
 
     @Test
     public void testGetMenu(){
@@ -30,6 +33,10 @@ public class CategoryRepositoryTest {
     @Test
     public void testRepo(){
         System.out.println(categoryRepository.findAll());
+    }
+    @Test
+    public void testGetById(){
+        System.out.println(dishService.findById(1L));
     }
 }
 
