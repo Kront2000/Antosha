@@ -65,4 +65,8 @@ public class DishController {
         System.out.println(dishDto);
         System.out.println(dishService.updateDish(dishDto));
     }
+    @DeleteMapping("/deleteDish")
+    public void deleteDish(@RequestParam("id") Long id){
+        dishService.deleteDish(id);
+    }
 }

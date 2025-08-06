@@ -75,7 +75,7 @@
                     <div class="categories_text">${category.name}</div>
                     <div class="categories">
                         ${category.dishes.map(dish => `
-                            <div class='dish'>
+                            <a href="edit.html?id=${dish.id}" class='dish'>
                                 <div class="full_description">
                                     <img class='dishimg' src='${dish.image_path}' alt=''>
                                     <div class='dish_name'>${dish.name}</div>
@@ -83,15 +83,12 @@
                                 </div>
                                 <div class="button_and_price">
                                     <div class='price'>${dish.price}тг</div>
-                                    <a href="edit.html?id=${dish.id}">
-                                    <button>edit</button>
-                                    </a>
                                 </div>
-                            </div>
+                            </a>
                         `).join('')}
                         
-                            <div class="dish"><a class="plus" href='add.html?category=${category.name}'>
-                                <img class='dishimg' src='/img/add.png' alt=''>
+                            <div class="dish_add"><a class="plus" href='add.html?category=${category.name}'>
+                                <img class='dishimg_add' src='/img/add.png' alt=''>
                                 </a></dish>
                         
                     </div>

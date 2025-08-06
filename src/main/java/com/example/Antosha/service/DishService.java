@@ -68,4 +68,8 @@ public class DishService {
                 .build();
         return dishRepository.save(newDish);
     }
+
+    public void deleteDish(Long id){
+        dishRepository.deleteById(id);
+    }
 }
