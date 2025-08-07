@@ -44,14 +44,27 @@
         </div>
         <div class="line"></div>
         <div class="navig">
-            <div class="menu">
-                <a class="menubutton" href="">Сеты</a>
-                <a class="menubutton" href="">Роллы</a>
-                <a class="menubutton" href="">Запечёные</a>
-                <a class="menubutton" href="">Шаурма</a>
-                <a class="menubutton" href="">Горячее</a>
-                <a class="menubutton" href="">Напитки</a>
+            <div class="menu" id="menu">
             </div>
+            <script>
+                async function menubutton() {
+                    const res = await fetch('/api/v1/category');
+                    const categories = await res.json();
+                    const container = document.getElementById('menu');
+                    container.innerHTML = '';
+
+                    categories.forEach(category => {
+                        const link = document.createElement('a');
+                        link.classList.add('menubutton');
+                        link.href = `#${category.name}`;
+                        link.textContent = category.name;
+                        container.appendChild(link);
+
+                    });
+                }
+
+                document.addEventListener("DOMContentLoaded", menubutton)
+            </script>
         </div>
         <div class="line"></div>
 

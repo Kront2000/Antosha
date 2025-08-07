@@ -57,12 +57,11 @@
                     container.innerHTML = '';
 
                     categories.forEach(category => {
-                        const ButtonBlock = document.createElement('div');
-                        ButtonBlock.classList.add('button-block');
-                        ButtonBlock.innerHTML = `
-                            <a class="menubutton" href="#${category.name}">${category.name}</a>
-                        `
-                        container.appendChild(ButtonBlock);
+                        const link = document.createElement('a');
+                        link.classList.add('menubutton');
+                        link.href = `#${category.name}`;
+                        link.textContent = category.name;
+                        container.appendChild(link);
 
                     });
                 }
