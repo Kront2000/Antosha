@@ -30,6 +30,7 @@ public class SecurityConfig {
         return  http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/index.html").permitAll()
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
                         .requestMatchers("/img/**").permitAll()
