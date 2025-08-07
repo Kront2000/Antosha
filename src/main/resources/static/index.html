@@ -15,76 +15,80 @@
 </head>
 
 <body>
-    <div class="top">
-        <div class="header">
-            <div class="conteiner">
-                <div class="logoKrb">
-                    <div class="logo">
-                        <img class="logoimg" src="/img/gurmaniya.png" alt="">
-                    </div>
-                    <div>
-
-                        <div class="KRB">
-                            <div class="gps">
-                                <img class="gpsimg" src="/img/gps.png" alt="">
-                            </div>
-                            Карабалык
+    <div class="body2">
+        <div class="top">
+            <div class="header">
+                <div class="conteiner">
+                    <div class="logoKrb">
+                        <div class="logo">
+                            <img class="logoimg" src="/img/gurmaniya.png" alt="">
                         </div>
-                        <div class="Dos">Доствка работает с 9:00 до 21:00</div>
-                    </div>
-                </div>
+                        <div>
 
-                <div class="number">
-                    <div class="phone">
-                        <img class="phoneimg" src="/img/phone.png" alt="">
+                            <div class="KRB">
+                                <div class="gps">
+                                    <img class="gpsimg" src="/img/gps.png" alt="">
+                                </div>
+                                Карабалык
+                            </div>
+                            <div class="Dos">Доствка работает с 9:00 до 21:00</div>
+                        </div>
                     </div>
-                    <div class="numbertext">+7(705) 419-70-50</div>
+
+                    <div class="number">
+                        <div class="phone">
+                            <img class="phoneimg" src="/img/phone.png" alt="">
+                        </div>
+                        <div class="numbertext">+7(705) 419-70-50</div>
+                    </div>
                 </div>
+            </div>
+
+        </div>
+        <div class="top">
+            <div class="navig">
+                <div class="menu" id="menu">
+                </div>
+                <script>
+                    async function menubutton() {
+                        const res = await fetch('/api/v1/category');
+                        const categories = await res.json();
+                        const container = document.getElementById('menu');
+                        container.innerHTML = '';
+
+                        categories.forEach(category => {
+                            const link = document.createElement('a');
+                            link.classList.add('menubutton');
+                            link.href = `#${category.name}`;
+                            link.textContent = category.name;
+                            container.appendChild(link);
+
+                        });
+                    }
+
+                    document.addEventListener("DOMContentLoaded", menubutton)
+                </script>
             </div>
         </div>
-        <div class="line"></div>
-        <div class="navig">
-            <div class="menu" id="menu">
-            </div>
+
+
+
+
+        <div class="main">
+            <div id="menu-container"></div>
+
             <script>
-                async function menubutton() {
-                    const res = await fetch('/api/v1/category');
+                async function loadMenu() {
+                    const res = await fetch('/api/v1/menu');
                     const categories = await res.json();
-                    const container = document.getElementById('menu');
+                    const container = document.getElementById('menu-container');
                     container.innerHTML = '';
 
                     categories.forEach(category => {
-                        const link = document.createElement('a');
-                        link.classList.add('menubutton');
-                        link.href = `#${category.name}`;
-                        link.textContent = category.name;
-                        container.appendChild(link);
+                        const categoryBlock = document.createElement('div');
+                        categoryBlock.classList.add('category-block');
 
-                    });
-                }
-
-                document.addEventListener("DOMContentLoaded", menubutton)
-            </script>
-        </div>
-        <div class="line"></div>
-
-
-    </div>
-<div class="main">
-    <div id="menu-container"></div>
-
-    <script>
-        async function loadMenu() {
-            const res = await fetch('/api/v1/menu');
-            const categories = await res.json();
-            const container = document.getElementById('menu-container');
-            container.innerHTML = '';
-
-            categories.forEach(category => {
-                const categoryBlock = document.createElement('div');
-                categoryBlock.classList.add('category-block');
-
-                categoryBlock.innerHTML = `
+                        categoryBlock.innerHTML = `
                     <div class="categories_text" id="${category.name}">${category.name}</div>
                     <div class="categories">
                         ${category.dishes.map(dish => `
@@ -101,15 +105,15 @@
                         `).join('')}
                     </div>
                 `;
-                container.appendChild(categoryBlock);
-            });
-        }
+                        container.appendChild(categoryBlock);
+                    });
+                }
 
-        document.addEventListener('DOMContentLoaded', loadMenu);
-    </script>
-</div>
+                document.addEventListener('DOMContentLoaded', loadMenu);
+            </script>
+        </div>
 
-
+    </div>
 </body>
 
 </html>
