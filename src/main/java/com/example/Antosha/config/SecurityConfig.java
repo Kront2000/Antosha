@@ -32,7 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("/index.html").permitAll()
                         .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
-                        .requestMatchers("/images/**").permitAll()
+                        .requestMatchers("/img/**").permitAll()
                         .requestMatchers("/api/v1/menu").permitAll().anyRequest().authenticated())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .build();
