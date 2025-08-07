@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body{
     display: flex;
     align-items: center;
@@ -92,15 +96,22 @@ body{
     width: 100%;
 }
 .menubutton{
-    padding: 10px 20px;
+    
     text-decoration: none;
     color: rgb(57, 57, 57);
     transition: background-color 0.2s linear;
 
 }
+.button-block{
+    padding: 10px 20px;
+    transition: background-color 0.2s linear;
+}
+.button-block:hover{
+    background-color: rgb(255, 235, 224);
+}
 
 .menubutton:hover{
-    background-color: rgb(255, 235, 224);
+    
 }
 
 .categories{

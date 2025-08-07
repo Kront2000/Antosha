@@ -47,14 +47,28 @@
         </div>
         <div class="line"></div>
         <div class="navig">
-            <div class="menu">
-                <a class="menubutton" href="">Сеты</a>
-                <a class="menubutton" href="">Роллы</a>
-                <a class="menubutton" href="">Запечёные</a>
-                <a class="menubutton" href="">Шаурма</a>
-                <a class="menubutton" href="">Горячее</a>
-                <a class="menubutton" href="">Напитки</a>
+            <div class="menu" id="menu">
             </div>
+            <script>
+                async function menubutton() {
+                    const res = await fetch('/api/v1/category');
+                    const categories = await res.json();
+                    const container = document.getElementById('menu');
+                    container.innerHTML = '';
+
+                    categories.forEach(category => {
+                        const ButtonBlock = document.createElement('div');
+                        ButtonBlock.classList.add('button-block');
+                        ButtonBlock.innerHTML = `
+                            <a class="menubutton" href="#${category.name}">${category.name}</a>
+                        `
+                        container.appendChild(ButtonBlock);
+
+                    });
+                }
+
+                document.addEventListener("DOMContentLoaded", menubutton)
+            </script>
         </div>
         <div class="line"></div>
 
@@ -75,7 +89,7 @@
                 categoryBlock.classList.add('category-block');
 
                 categoryBlock.innerHTML = `
-                    <div class="categories_text">${category.name}</div>
+                    <div class="categories_text" id="${category.name}">${category.name}</div>
                     <div class="categories">
                         ${category.dishes.map(dish => `
                             <div class='dish'>
