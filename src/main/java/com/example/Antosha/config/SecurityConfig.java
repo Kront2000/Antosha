@@ -22,7 +22,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(PasswordEncoder encoder){
         UserDetails admin = User.builder()
                 .username("admin")
-                .password(encoder.encode("admin")).build();
+                .password(encoder.encode("1q2w3e4r")).build();
         return new InMemoryUserDetailsManager(admin);
     }
     @Bean
