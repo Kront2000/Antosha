@@ -265,8 +265,9 @@ body {
     .top,
     .navig,
     .header {
-        max-width: 290px;
+        max-width: 90%;
     }
+
 
     .categories_text {
     font-size: 15px;
@@ -275,8 +276,8 @@ body {
 
     .dish {
         padding: 5px;
-        width: 130px;
-        height: 205px;
+        width: 80%;
+        height: 200px;
 
     }
 
@@ -285,7 +286,7 @@ body {
     }
 
     .numbertext {
-        font-size: 4px;
+        font-size: 6px;
         margin-right: 10px;
     }
 
@@ -297,6 +298,7 @@ body {
         font-size: 7px;
         font-weight: 500;
         padding: 2px 4px;
+        border: none;
     }
 
     .logo {
@@ -305,13 +307,13 @@ body {
     }
 
     .gps {
-        padding-right: 5px;
+        padding-right: 7px;
         height: 4px;
     }
 
     .phone {
         padding-right: 2px;
-        height: 7px;
+        height: 8px;
         margin-bottom: 20px;
         margin-top: 0px;
     }
@@ -319,13 +321,13 @@ body {
     .KRB {
         font-family: Arial;
         font-weight: bold;
-        font-size: 4px;
+        font-size: 6px;
         color: rgb(215, 0, 0);
     }
 
     .Dos {
         font-family: Arial;
-        font-size: 4px;
+        font-size: 6px;
         color: rgb(85, 85, 85);
     }
 
