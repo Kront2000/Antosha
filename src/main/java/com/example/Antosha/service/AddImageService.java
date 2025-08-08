@@ -1,5 +1,9 @@
 package com.example.Antosha.service;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import com.example.Antosha.config.CloudinaryConfig;
+import lombok.AllArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.ContextLoader;
@@ -7,9 +11,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
+@AllArgsConstructor
 @Service
 public class AddImageService {
+    private final Cloudinary cloudinary;
+
+    public String addImageCloudinary(MultipartFile file) throws IOException {
+        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+        return uploadResult.get("secure_url").toString();
+    }
+
+
     public String addImage(Long id, MultipartFile multipartFile) throws IOException {
         // Получаем абсолютный путь до папки static/img
         String staticImgPath = new ClassPathResource("static/img").getFile().getAbsolutePath();
@@ -37,4 +51,6 @@ public class AddImageService {
 
         return "/uploads/" + fileName;
     }
+
+
 }
