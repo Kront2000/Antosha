@@ -38,7 +38,7 @@ public class DishService {
                 .price(dishDto.price())
                 .description(dishDto.description())
                 .category(category)
-                .image_path(addImageService.addImageToSer(dishDto.id(), dishDto.image()))
+                .image_path(addImageService.addImageCloudinary(dishDto.image()))
                 .build();
         return dishRepository.save(newDish);
     }
@@ -64,7 +64,7 @@ public class DishService {
                 .id(dishDto.id())
                 .description(dishDto.description())
                 .category(category)
-                .image_path(dishDto.image() == null ? dish.getImage_path() : addImageService.addImageToSer(dish.getId(), dishDto.image()))
+                .image_path(dishDto.image() == null ? dish.getImage_path() : addImageService.addImageCloudinary(dishDto.image()))
                 .build();
         return dishRepository.save(newDish);
     }
